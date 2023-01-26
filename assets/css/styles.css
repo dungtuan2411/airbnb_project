@@ -21,7 +21,6 @@
 /* HEADER */
 #header {
     font-size: 1.4rem;
-    border: 1px solid #ebebeb;
 }
 
 .header__container {
@@ -34,6 +33,8 @@
 .header--fixed {
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     background-color: var(--white-color);
     z-index: 1;
 }
@@ -163,49 +164,150 @@
 
 /* NAVBAR */
 #navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
-}
-
-.navbar__container {
-    padding-top: 2rem;
-}
-
-.nav-slider {
+    padding: 2rem 4rem 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    border-top: 1px solid #ebebeb;
+    transition: all 0.1s linear;
+}
+
+/* 1. Slider wrapper */
+.slider-wrapper {
+    position: relative;
     overflow: hidden;
 }
 
+/* navigation buttons */
+.prev-button-container,
+.next-button-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.prev-button-container {
+    left: 0;
+    background-image: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0),
+        white 4rem
+    );
+    /* default prev button is hidden */
+    display: none;
+}
+
+.next-button-container {
+    right: 0;
+    padding-right: 8px;
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0),
+        white 4rem
+    );
+}
+
+.prev-button-container::after,
+.next-button-container::before {
+    content: "";
+    display: block;
+    width: 4rem;
+    height: 100%;
+}
+
+.prev-button,
+.next-button {
+    height: 2.8rem;
+    width: 2.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.prev-button i,
+.next-button i {
+    /* increase icon font-weigth */
+    -webkit-text-stroke: 0.5px;
+}
+
+/* slider and item */
+.nav-slider {
+    display: flex;
+    column-gap: 3.2rem;
+    align-items: center;
+    list-style: none;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.nav-slider::-webkit-scrollbar {
+    display: none;
+}
+
 .nav-slider__item {
+    /* item not grow, shrink and has width of it's content */
+    flex: 0 0 auto;
+    font-size: 1.2rem;
+    padding: 4px 0 14px;
+    margin-top: 1.2rem;
+    transition: all 0.2s linear;
+    min-width: 5.4rem;
+}
+
+.nav-slider-item__btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-weight: 600;
-    color: rgb(113, 113, 113);
-    gap: 9px;
-    font-size: 12px;
-    padding: 4px 0 14px;
-    margin-top: 12px;
+    gap: 8px;
     cursor: pointer;
-    transition: all 0.2s linear;
+    border: 0;
+    background-color: transparent;
+    color: rgb(113, 113, 113);
+    font-weight: 600;
+    width: 100%;
 }
 
-.nav-slider__item span {
+.nav-slider-item__btn span {
     letter-spacing: -0.3px;
-    white-space: nowrap;
 }
 
 .nav-slider__item--clicked {
-    border-bottom: 2px solid rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
+    border-bottom: 2px solid #000000;
     cursor: default;
+    pointer-events: none;
 }
 
-.nav-slider__item img {
+.nav-slider__item--clicked span {
+    color: #000000;
+}
+
+.nav-slider-item__btn img {
     filter: opacity(60%);
 }
 
-.nav-slider__item--clicked img {
+.nav-slider__item--clicked .nav-slider-item__btn img {
     filter: opacity(100%);
+}
+
+/* 2. Navbar filter */
+.nav-filter {
+    width: 150px;
+}
+
+.nav-filter__btn {
+}
+
+.nav-filter__btn > * {
+    display: block;
+}
+
+.nav-filter__btn img {
+}
+
+.nav-filter__btn span {
 }
