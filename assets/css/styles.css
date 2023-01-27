@@ -211,7 +211,6 @@
 
 .next-button-container {
     right: 0;
-    padding-right: 8px;
     background-image: linear-gradient(
         to right,
         rgba(255, 255, 255, 0),
@@ -299,10 +298,23 @@
 
 /* 2. Navbar filter */
 .nav-filter {
-    width: 150px;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 110px;
 }
 
 .nav-filter__btn {
+    display: flex;
+    align-items: center;
+    padding: 1.6rem 1.7rem;
+    column-gap: 7px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: var(--white-color);
+    color: var(--black-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1.2rem;
+    cursor: pointer;
 }
 
 .nav-filter__btn > * {
@@ -310,7 +322,9 @@
 }
 
 .nav-filter__btn img {
+    width: 1.4rem;
 }
 
 .nav-filter__btn span {
+    letter-spacing: -0.2px;
 }

@@ -23,12 +23,13 @@ function scrollFunction() {
 }
 
 // NAVBAR SLIDER
-const sliderWrapper = document.querySelector('.slider-wrapper');
+const sliderWrapper = document.querySelector(".slider-wrapper");
 const buttons = document.querySelectorAll(
     ".slider-wrapper .prev-button-container button, .slider-wrapper .next-button-container button"
 );
 // maximum scrollable
-let sliderWrapperMaxScrollWidth = sliderWrapper.scrollWidth - sliderWrapper.clientWidth;
+let sliderWrapperMaxScrollWidth =
+    sliderWrapper.scrollWidth - sliderWrapper.clientWidth;
 let sliderWrapperHalfScrollWidth = Math.round(sliderWrapperMaxScrollWidth / 2);
 
 console.log(sliderWrapperMaxScrollWidth);
@@ -36,12 +37,14 @@ console.log(sliderWrapperHalfScrollWidth);
 
 const showHidedButtons = () => {
     console.log(sliderWrapper.scrollLeft);
-    // if navSlider scrollLeft is 0, hide left button
+    // if sliderWrapper scrollLeft is 0, hide left button
     buttons[0].parentElement.style.display =
         sliderWrapper.scrollLeft === 0 ? "none" : "flex";
     // if sliderWrapper scollLeft is max (sliderWrapperMaxScrollWidth), hide right button
     buttons[1].parentElement.style.display =
-        sliderWrapper.scrollLeft === sliderWrapperMaxScrollWidth ? "none" : "flex";
+        sliderWrapper.scrollLeft === sliderWrapperMaxScrollWidth
+            ? "none"
+            : "flex";
 };
 
 buttons.forEach((item) => {
