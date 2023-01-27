@@ -171,10 +171,19 @@
     transition: all 0.1s linear;
 }
 
+.navbar-buttons-container {
+    overflow: hidden;
+    position: relative;
+}
+
 /* 1. Slider wrapper */
 .slider-wrapper {
-    position: relative;
-    overflow: hidden;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.slider-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 /* navigation buttons */
@@ -241,12 +250,6 @@
     column-gap: 3.2rem;
     align-items: center;
     list-style: none;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-}
-
-.nav-slider::-webkit-scrollbar {
-    display: none;
 }
 
 .nav-slider__item {

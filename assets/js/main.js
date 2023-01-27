@@ -23,32 +23,37 @@ function scrollFunction() {
 }
 
 // NAVBAR SLIDER
-const navSlider = document.querySelector(".nav-slider");
+const sliderWrapper = document.querySelector('.slider-wrapper');
 const buttons = document.querySelectorAll(
     ".slider-wrapper .prev-button-container button, .slider-wrapper .next-button-container button"
 );
 // maximum scrollable
-let navSliderMaxScrollWidth = navSlider.scrollWidth - navSlider.clientWidth;
-let navSliderHalfScrollWidth = Math.round(navSliderMaxScrollWidth / 2);
+let sliderWrapperMaxScrollWidth = sliderWrapper.scrollWidth - sliderWrapper.clientWidth;
+let sliderWrapperHalfScrollWidth = Math.round(sliderWrapperMaxScrollWidth / 2);
+
+console.log(sliderWrapperMaxScrollWidth);
+console.log(sliderWrapperHalfScrollWidth);
 
 const showHidedButtons = () => {
+    console.log(sliderWrapper.scrollLeft);
     // if navSlider scrollLeft is 0, hide left button
     buttons[0].parentElement.style.display =
-        navSlider.scrollLeft === 0 ? "none" : "flex";
-    // if navSlider scollLeft is max (navSliderMaxScrollWidth), hide right button
+        sliderWrapper.scrollLeft === 0 ? "none" : "flex";
+    // if sliderWrapper scollLeft is max (sliderWrapperMaxScrollWidth), hide right button
     buttons[1].parentElement.style.display =
-        navSlider.scrollLeft === navSliderMaxScrollWidth ? "none" : "flex";
+        sliderWrapper.scrollLeft === sliderWrapperMaxScrollWidth ? "none" : "flex";
 };
 
 buttons.forEach((item) => {
+    // item is prev or next button
     item.addEventListener("click", () => {
-        navSlider.scrollLeft +=
+        sliderWrapper.scrollLeft +=
             item.className == "prev-button"
-                ? -navSliderHalfScrollWidth
-                : navSliderHalfScrollWidth;
-        // delay 250ms so navSlider.scrollLeft has ennough time to update
+                ? -sliderWrapperHalfScrollWidth
+                : sliderWrapperHalfScrollWidth;
+        // delay 350ms so sliderWrapper.scrollLeft has ennough time to update
         setTimeout(() => {
             showHidedButtons();
-        }, 300);
+        }, 350);
     });
 });
