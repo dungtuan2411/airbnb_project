@@ -60,3 +60,16 @@ buttons.forEach((item) => {
         }, 350);
     });
 });
+
+// Slider item clicked
+const sliderItems = document.querySelectorAll(".nav-slider__item");
+sliderItems.forEach((item, index) => {
+    item.onclick = function () {
+        // find current clicked item and remove it's --clicked class.
+        document
+            .querySelector(".nav-slider__item.nav-slider__item--clicked")
+            .classList.remove("nav-slider__item--clicked");
+        // add --clicked class to newest clicked item.
+        this.classList.add("nav-slider__item--clicked");
+    };
+});
