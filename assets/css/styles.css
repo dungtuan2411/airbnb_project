@@ -332,9 +332,10 @@
 
 /* 2. Navbar filter */
 .nav-filter {
+    flex: 0 0 auto;
+    padding-left: 2.4rem;
     display: flex;
     justify-content: flex-end;
-    min-width: 110px;
 }
 
 .nav-filter__btn {
@@ -361,4 +362,72 @@
 
 .nav-filter__btn span {
     letter-spacing: -0.2px;
+}
+
+/* MAIN CONTAINER */
+.locations-picker {
+    border-width: 1px;
+    border-color: blue;
+    margin-top: 1.6rem;
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2.4rem;
+    row-gap: 4rem;
+}
+
+.location {
+    /* prevent container not change width when content of items getting longer */
+    min-width: 0;
+}
+
+.location-img {
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+}
+
+.location-img img {
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.location-info {
+    font-size: 1.5rem;
+    line-height: 1.9rem;
+}
+
+.location-info__rate {
+    display: flex;
+    column-gap: 8px;
+}
+
+.location-info__name,
+.location-info__distance {
+    margin-bottom: 2px;
+}
+
+.location-info__distance,
+.location-info__date {
+    color: var(--grey-color);
+}
+
+.location-info__name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.location-info__rating {
+    flex: 0 0 auto;
+}
+
+.location-info__date {
+    margin-bottom: 6px;
+}
+
+.price {
+    font-weight: 700;
+    margin-right: -2px;
+    color: rgb(34, 34, 34);
 }

@@ -7,6 +7,9 @@ window.onscroll = function () {
     scrollFunction();
 };
 
+// When header is fixed, locations section must margin top
+const locationsPicker = document.querySelector(".locations-picker");
+
 function scrollFunction() {
     if (
         document.body.scrollTop > pricePreviewHeight ||
@@ -15,10 +18,13 @@ function scrollFunction() {
         document.getElementById("header").classList.add("header--fixed");
         navbarId.style.paddingTop = 0;
         navbarId.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.07)";
+        // margin top
+        locationsPicker.style.marginTop = "202px";
     } else {
         document.getElementById("header").classList.remove("header--fixed");
         navbarId.style.paddingTop = "2rem";
         navbarId.style.boxShadow = "none";
+        locationsPicker.style.marginTop = "24px";
     }
 }
 
