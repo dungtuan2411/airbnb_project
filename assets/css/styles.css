@@ -36,7 +36,7 @@
     left: 0;
     right: 0;
     background-color: var(--white-color);
-    z-index: 1;
+    z-index: 2;
 }
 
 /* 1.2: middle */
@@ -366,14 +366,16 @@
 
 /* MAIN CONTAINER */
 .locations-picker {
-    border-width: 1px;
-    border-color: blue;
     margin-top: 1.6rem;
     margin-bottom: 4rem;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: 2.4rem;
     row-gap: 4rem;
+}
+
+.location-link {
+    text-decoration: none;
 }
 
 .location {
@@ -381,14 +383,14 @@
     min-width: 0;
 }
 
-.location-img {
+.location__images-slider {
     margin-bottom: 1.2rem;
-    overflow: hidden;
 }
 
-.location-img img {
+.location__images-slider img {
     width: 100%;
-    border-radius: 1rem;
+    height: 284px;
+    object-fit: cover;
 }
 
 .location-info {
@@ -399,6 +401,7 @@
 .location-info__rate {
     display: flex;
     column-gap: 8px;
+    color: var(--black-color);
 }
 
 .location-info__name,
@@ -412,7 +415,7 @@
 }
 
 .location-info__name {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.4rem;
     overflow: hidden;
     white-space: nowrap;
@@ -426,8 +429,122 @@
     margin-bottom: 6px;
 }
 
+.price-per-night {
+    color: var(--black-color);
+}
+
 .price {
     font-weight: 700;
     margin-right: -2px;
-    color: rgb(34, 34, 34);
+    color: var(--black-color);
+}
+
+/* SLICK */
+.slick-list {
+    border-radius: 1rem;
+}
+
+/* slick arrow */
+.slick-arrow {
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 32px;
+    height: 32px;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: black;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px transparent, 0 0 0 4px transparent,
+        0 2px 4px rgba(0, 0, 0, 0.18);
+    transition: all 0.25s ease;
+    z-index: 1;
+    visibility: hidden;
+    font-size: 1.2rem;
+}
+
+.location:hover .slick-arrow {
+    visibility: visible;
+}
+
+.slick-arrow:hover {
+    border-color: rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px transparent, 0 0 0 4px transparent,
+        0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.pull-right {
+    right: 10px;
+}
+
+.pull-left {
+    left: 10px;
+}
+
+.slick-arrow.slick-disabled {
+    display: none !important;
+}
+
+/* slick dots */
+.slick-dotted.slick-slider {
+    margin-bottom: 1.2rem;
+}
+
+.slick-dots-container {
+    width: 5.5rem;
+    overflow: hidden;
+    display: block;
+    margin: 0.625rem auto;
+    height: 0.875rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 4px;
+}
+
+.slick-dots-container > ul {
+    display: flex;
+    transition: all 0.25s;
+    position: relative;
+    list-style: none;
+    transform: translateX(0);
+    align-items: center;
+    bottom: unset;
+    height: 100%;
+}
+
+.slick-dots-container > ul li {
+    width: 0.6rem;
+    height: 0.6rem;
+    margin: 0 0.25rem;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.6;
+    border: none;
+    border-radius: 50%;
+}
+
+.slick-dots-container > ul li.p-small-1,
+.slick-dots-container > ul li.n-small-1 {
+    transform: scale(0.8);
+}
+
+.slick-dots-container > ul li.p-small-2,
+.slick-dots-container > ul li.n-small-2 {
+    transform: scale(0.6);
+}
+
+.slick-dots-container > ul li.slick-active {
+    transform: scale(1.3);
+    transform-origin: center;
+    opacity: 1;
+}
+
+.slick-dots li button:before {
+    display: none;
 }
