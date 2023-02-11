@@ -111,199 +111,215 @@ $(document).ready(function () {
         setBoundries($(this), "default");
     });
 
-    var transformCount = 0;
-    slickSlider.on(
-        "beforeChange",
-        function (event, slick, currentSlide, nextSlide) {
-            var totalCount = $(this).find(".slick-dots li").length;
-            // event chỉ xảy ra khi có nhiều hơn 4 slide
-            if (totalCount > maxDots) {
-                // khi click next arrow
-                if (nextSlide > currentSlide) {
-                    // bắt đầu scroll khi đến slide thứ 4
-                    if (nextSlide > 2) {
-                        /**
-                         * currentSlide chỉ index của slide hiện tại (bắt đầu từ 0).
-                         * nextSlide chỉ index (bắt đầu từ 0) của slide phía sau slide hiện tại.
-                         * Chỉ scroll slider khi dot phía sau nextSlide không phải last-child và
-                         * index của nó phải bé hơn totalCount - 1 (tức đot cuối).
-                         */
-                        if (
-                            !$(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        (nextSlide + 1)
-                                )
-                                .is($("ul.slick-dots li:last-child")) &&
-                            nextSlide < totalCount - 1
-                        ) {
-                            transformCount =
-                                transformCount + transformXIntervalNext;
-                            // bỏ thu nhỏ 0.8 dot hiện tại
-                            $(this)
-                                .find("ul.slick-dots li.dot-index-" + nextSlide)
-                                .removeClass("n-small-1");
+    $(slickSlider).each(function (key, item) {
+        // console.log(item);
+        let sliderItem = slickSlider[key];
+        console.log($(sliderItem));
 
-                            var nextSlidePlusOne = nextSlide + 1;
-                            var nextSlidePlusTwo = nextSlide + 2;
-                            // bỏ thu nhỏ 0.6 của dot tiếp theo
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlidePlusOne
-                                )
-                                .removeClass("n-small-2");
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlidePlusOne
-                                )
-                                .removeClass("p-small-2");
-                            // bỏ thu nhỏ 0.8 của dot tiếp theo
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlidePlusOne
-                                )
-                                .removeClass("n-small-1");
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlidePlusOne
-                                )
-                                .removeClass("p-small-1");
-                            // thêm thu nhỏ 0.8 cho dots ngoài rìa bên phải nhìn thấy được trừ khi nó là last child
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlidePlusTwo
-                                )
-                                .not($("ul.slick-dots li:last-child"))
-                                .addClass("n-small-1");
-                            // tiến hành move slide
-                            $(this)
-                                .find("ul.slick-dots")
-                                .css(
-                                    "transform",
-                                    "translateX(" + transformCount + "px)"
-                                );
-                            // tiến hành thu nhỏ dots nằm ngoài rìa bên trái
-                            var pPointer = nextSlide - 2;
-                            $(this)
-                                .find("ul.slick-dots li")
-                                .eq(pPointer)
-                                .addClass("p-small-1");
-                        } else {
-                            // khi kéo đến cuối slide (dot kế cuối), thu nhỏ 0.6 cho dot ngoài rìa bên trái và 0.8 cho dot kế bên nó.
-                            if (nextSlide < totalCount - 1) {
-                                var nextSlideMinusTwo = nextSlide - 2;
-                                var nextSlideMinusThree = nextSlide - 3;
-
+        var transformCount = 0;
+        // slider dots translate function is separate from each other
+        $(sliderItem).on(
+            "beforeChange",
+            function (event, slick, currentSlide, nextSlide) {
+                var totalCount = $(this).find(".slick-dots li").length;
+                // event chỉ xảy ra khi có nhiều hơn 4 slide
+                if (totalCount > maxDots) {
+                    // khi click next arrow
+                    if (nextSlide > currentSlide) {
+                        // bắt đầu scroll khi đến slide thứ 4
+                        if (nextSlide > 2) {
+                            /**
+                             * currentSlide chỉ index của slide hiện tại (bắt đầu từ 0).
+                             * nextSlide chỉ index (bắt đầu từ 0) của slide phía sau slide hiện tại.
+                             * Chỉ scroll slider khi dot phía sau nextSlide không phải last-child và
+                             * index của nó phải bé hơn totalCount - 1 (tức đot cuối).
+                             */
+                            if (
+                                !$(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            (nextSlide + 1)
+                                    )
+                                    .is($("ul.slick-dots li:last-child")) &&
+                                nextSlide < totalCount - 1
+                            ) {
+                                transformCount =
+                                    transformCount + transformXIntervalNext;
+                                // bỏ thu nhỏ 0.8 dot hiện tại
                                 $(this)
                                     .find(
                                         "ul.slick-dots li.dot-index-" +
-                                            nextSlideMinusTwo
+                                            nextSlide
                                     )
-                                    .addClass("n-small-1");
-                                $(this)
-                                    .find(
-                                        "ul.slick-dots li.dot-index-" +
-                                            nextSlideMinusThree
-                                    )
-                                    .addClass("n-small-2");
-                            }
-                        }
-                    }
-                }
-                // Khi click prev arrow
-                else if (nextSlide < currentSlide) {
-                    // bắt đầu scroll khi đến slide thứ (totalCount - 3)
-                    if (nextSlide < totalCount - 3) {
-                        /**
-                         * current slide chỉ index của slide hiện tại (bắt đầu từ 0).
-                         * nextSlide chỉ index (bắt đầu từ 0) của slide phía trước slide hiện tại.
-                         * Chỉ scroll slider khi dot trước nextSlide không phải first-child
-                         * và index của nó phải lớn hơn 0 (0 là dot đầu tiên).
-                         */
-                        if (
-                            !$(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        (nextSlide - 1)
-                                )
-                                .is($("ul.slick-dots li:first-child")) &&
-                            nextSlide > 0
-                        ) {
-                            transformCount =
-                                transformCount + transformXIntervalPrev;
-                            // bỏ thu nhỏ 0.8 cho dot hiện tại
-                            $(this)
-                                .find("ul.slick-dots li.dot-index-" + nextSlide)
-                                .removeClass("p-small-1");
-                            $(this)
-                                .find("ul.slick-dots li.dot-index-" + nextSlide)
-                                .removeClass("n-small-1");
+                                    .removeClass("n-small-1");
 
-                            var nextSlideMinusOne = nextSlide - 1;
-                            // bỏ thu nhỏ 0.8 và 0.6 cho dot trước nextSlide
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlideMinusOne
-                                )
-                                .removeClass("n-small-2");
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlideMinusOne
-                                )
-                                .removeClass("p-small-1");
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlideMinusOne
-                                )
-                                .removeClass("n-small-1");
-                            // tiến hành thu nhỏ 0.8 dot ngoài rìa bên phải
-                            var nextSlidePlusTwo = nextSlide + 2;
-                            $(this)
-                                .find(
-                                    "ul.slick-dots li.dot-index-" +
-                                        nextSlidePlusTwo
-                                )
-                                .addClass("p-small-1");
-                            // scroll slider
-                            $(this)
-                                .find("ul.slick-dots")
-                                .css(
-                                    "transform",
-                                    "translateX(" + transformCount + "px)"
-                                );
-                        } else {
-                            // khi kéo đến đầu slide (dot thứ 2), thu nhỏ 0.6 cho dot ngoài rìa bên phải và 0.8 cho dot trước nó.
-                            if (nextSlide > 0) {
+                                var nextSlidePlusOne = nextSlide + 1;
                                 var nextSlidePlusTwo = nextSlide + 2;
-                                var nextSlidePlusThree = nextSlide + 3;
-
+                                // bỏ thu nhỏ 0.6 của dot tiếp theo
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlidePlusOne
+                                    )
+                                    .removeClass("n-small-2");
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlidePlusOne
+                                    )
+                                    .removeClass("p-small-2");
+                                // bỏ thu nhỏ 0.8 của dot tiếp theo
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlidePlusOne
+                                    )
+                                    .removeClass("n-small-1");
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlidePlusOne
+                                    )
+                                    .removeClass("p-small-1");
+                                // thêm thu nhỏ 0.8 cho dots ngoài rìa bên phải nhìn thấy được trừ khi nó là last child
                                 $(this)
                                     .find(
                                         "ul.slick-dots li.dot-index-" +
                                             nextSlidePlusTwo
                                     )
+                                    .not($("ul.slick-dots li:last-child"))
                                     .addClass("n-small-1");
+                                // tiến hành move slide
+                                $(this)
+                                    .find("ul.slick-dots")
+                                    .css(
+                                        "transform",
+                                        "translateX(" + transformCount + "px)"
+                                    );
+                                // tiến hành thu nhỏ dots nằm ngoài rìa bên trái
+                                var pPointer = nextSlide - 2;
+                                $(this)
+                                    .find("ul.slick-dots li")
+                                    .eq(pPointer)
+                                    .addClass("p-small-1");
+                            } else {
+                                // khi kéo đến cuối slide (dot kế cuối), thu nhỏ 0.6 cho dot ngoài rìa bên trái và 0.8 cho dot kế bên nó.
+                                if (nextSlide < totalCount - 1) {
+                                    var nextSlideMinusTwo = nextSlide - 2;
+                                    var nextSlideMinusThree = nextSlide - 3;
+
+                                    $(this)
+                                        .find(
+                                            "ul.slick-dots li.dot-index-" +
+                                                nextSlideMinusTwo
+                                        )
+                                        .addClass("n-small-1");
+                                    $(this)
+                                        .find(
+                                            "ul.slick-dots li.dot-index-" +
+                                                nextSlideMinusThree
+                                        )
+                                        .addClass("n-small-2");
+                                }
+                            }
+                        }
+                    }
+                    // Khi click prev arrow
+                    else if (nextSlide < currentSlide) {
+                        // bắt đầu scroll khi đến slide thứ (totalCount - 3)
+                        if (nextSlide < totalCount - 3) {
+                            /**
+                             * current slide chỉ index của slide hiện tại (bắt đầu từ 0).
+                             * nextSlide chỉ index (bắt đầu từ 0) của slide phía trước slide hiện tại.
+                             * Chỉ scroll slider khi dot trước nextSlide không phải first-child
+                             * và index của nó phải lớn hơn 0 (0 là dot đầu tiên).
+                             */
+                            if (
+                                !$(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            (nextSlide - 1)
+                                    )
+                                    .is($("ul.slick-dots li:first-child")) &&
+                                nextSlide > 0
+                            ) {
+                                transformCount =
+                                    transformCount + transformXIntervalPrev;
+                                // bỏ thu nhỏ 0.8 cho dot hiện tại
                                 $(this)
                                     .find(
                                         "ul.slick-dots li.dot-index-" +
-                                            nextSlidePlusThree
+                                            nextSlide
                                     )
-                                    .addClass("n-small-2");
+                                    .removeClass("p-small-1");
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlide
+                                    )
+                                    .removeClass("n-small-1");
+
+                                var nextSlideMinusOne = nextSlide - 1;
+                                // bỏ thu nhỏ 0.8 và 0.6 cho dot trước nextSlide
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlideMinusOne
+                                    )
+                                    .removeClass("n-small-2");
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlideMinusOne
+                                    )
+                                    .removeClass("p-small-1");
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlideMinusOne
+                                    )
+                                    .removeClass("n-small-1");
+                                // tiến hành thu nhỏ 0.8 dot ngoài rìa bên phải
+                                var nextSlidePlusTwo = nextSlide + 2;
+                                $(this)
+                                    .find(
+                                        "ul.slick-dots li.dot-index-" +
+                                            nextSlidePlusTwo
+                                    )
+                                    .addClass("p-small-1");
+                                // scroll slider
+                                $(this)
+                                    .find("ul.slick-dots")
+                                    .css(
+                                        "transform",
+                                        "translateX(" + transformCount + "px)"
+                                    );
+                            } else {
+                                // khi kéo đến đầu slide (dot thứ 2), thu nhỏ 0.6 cho dot ngoài rìa bên phải và 0.8 cho dot trước nó.
+                                if (nextSlide > 0) {
+                                    var nextSlidePlusTwo = nextSlide + 2;
+                                    var nextSlidePlusThree = nextSlide + 3;
+
+                                    $(this)
+                                        .find(
+                                            "ul.slick-dots li.dot-index-" +
+                                                nextSlidePlusTwo
+                                        )
+                                        .addClass("n-small-1");
+                                    $(this)
+                                        .find(
+                                            "ul.slick-dots li.dot-index-" +
+                                                nextSlidePlusThree
+                                        )
+                                        .addClass("n-small-2");
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-    );
+        );
+    });
 
     $(".location__images-slider").slick({
         slidesToShow: 1,
