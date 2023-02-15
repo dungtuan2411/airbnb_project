@@ -454,6 +454,8 @@
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
     transform: translate(0, -50%);
+    /* help scaling both top and bottom */
+    transform-origin: top center;
     cursor: pointer;
     color: black;
     outline: none;
@@ -473,6 +475,7 @@
 }
 
 .slick-arrow:hover {
+    scale: 1.04;
     border-color: rgba(0, 0, 0, 0.08);
     background-color: #ffffff;
     box-shadow: 0 0 0 1px transparent, 0 0 0 4px transparent,

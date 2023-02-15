@@ -82,7 +82,7 @@ sliderItems.forEach((item, index) => {
 
 // SLICK SLIDER Images
 $(document).ready(function () {
-    // mặc định thu nhỏ dots thứ 4 và 5
+    // default: scale down dots no.4(0.6) and no.5(0.8)
     function setBoundries(slick, state) {
         if (state === "default") {
             slick.find("ul.slick-dots li").eq(3).addClass("n-small-1");
@@ -91,30 +91,32 @@ $(document).ready(function () {
     }
 
     // Slick container
-    // 1 danh sách các images slider
+    // list of images slider
     var slickSlider = $(".location__images-slider");
     var maxDots = 4;
-    // translate 11px trái phải
+    // translate 11px left or right
     var transformXIntervalNext = -11;
     var transformXIntervalPrev = 11;
 
     slickSlider.on("init", function (event, slick) {
+        // wrap ul list of dots inside new div
         $(this)
             .find("ul.slick-dots")
             .wrap("<div class='slick-dots-container'></div>");
+        // add class with index start from 0 for dots li
         $(this)
             .find("ul.slick-dots li")
             .each(function (index) {
                 $(this).addClass("dot-index-" + index);
             });
+        // default when load, ul wont translateX
         $(this).find("ul.slick-dots").css("transform", "translateX(0)");
         setBoundries($(this), "default");
     });
 
+    // scroll dots left or right when click arrow buttons
     $(slickSlider).each(function (key, item) {
-        // console.log(item);
         let sliderItem = slickSlider[key];
-        console.log($(sliderItem));
 
         var transformCount = 0;
         // slider dots translate function is separate from each other
@@ -321,6 +323,7 @@ $(document).ready(function () {
         );
     });
 
+    // slick settings
     $(".location__images-slider").slick({
         slidesToShow: 1,
         slidesToScroll: 1,

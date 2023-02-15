@@ -21,17 +21,3 @@ html {
     font-family: "Open Sans", sans-serif;
     box-sizing: border-box;
 }
-
-.btn {
-    display: inline-block;
-    text-decoration: none;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #fff;
-    padding: 12px 48px;
-    border-radius: 50px;
-    cursor: pointer;
-    min-width: 120px;
-    transition: opacity 0.2s ease;
-}
