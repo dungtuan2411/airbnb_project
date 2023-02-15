@@ -381,6 +381,32 @@
 .location {
     /* prevent container not change width when content of items getting longer */
     min-width: 0;
+    position: relative;
+}
+
+.location .like-btn {
+    position: absolute;
+    right: 1.3rem;
+    top: 1.2rem;
+    height: 3.2rem;
+    width: 3.2rem;
+    z-index: 1;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 2.4rem;
+    transition: all 0.25s linear;
+}
+
+.location .like-btn:active {
+    scale: 0.92;
+}
+
+.like-icon {
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.5);
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--white-color);
 }
 
 .location__images-slider {
