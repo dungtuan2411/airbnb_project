@@ -577,3 +577,99 @@
 .slick-dots li button:before {
     display: none;
 }
+
+/* FOOTER */
+/* Footer left */
+#footer {
+    padding: 1.3rem 0 1.4rem 0;
+    background-color: var(--white-color);
+    border-top: 1px solid var(--border-color);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+}
+
+.footer-left {
+    display: flex;
+}
+
+.footer-left .dot-middle {
+    width: 1.9rem;
+    text-align: center;
+}
+
+.footer-left__links {
+    display: flex;
+    list-style: none;
+}
+
+.footer-left__links a,
+.footer-right a {
+    color: var(--black-color);
+    text-decoration: none;
+}
+
+.footer-left__links a:hover,
+.footer-right a:hover {
+    text-decoration: underline;
+}
+
+/* Footer right */
+.footer-right {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.footer-right li:not(:last-child) {
+    margin-right: 2.4rem;
+}
+
+.footer-right li button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.footer-right li:first-child img {
+    vertical-align: top;
+}
+
+/* SHOW MAP BUTTON */
+.show-map {
+    position: fixed;
+    left: 50%;
+    bottom: 8.4rem;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 1.4rem 1.9rem;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 50rem;
+    z-index: 1;
+    transform-origin: center left;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.show-map:hover {
+    scale: 1.04;
+}
+
+.show-map img {
+    vertical-align: top;
+    width: 1.6rem;
+    margin-left: 8px;
+}
