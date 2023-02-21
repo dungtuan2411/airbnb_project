@@ -52,6 +52,7 @@
         <title>
             Nhà nghỉ dưỡng & Căn hộ cao cấp cho thuê - Airbnb - Airbnb
         </title>
+        <!-- IE9 polyfill for media query -->
         <!--[if lte IE 9]>
             <script
                 src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.min.js"
@@ -70,16 +71,25 @@
         <header id="header">
             <div class="header__container container">
                 <div class="header__logo">
-                    <img src="./assets/img/svgexport-1.svg" alt="" />
+                    <img
+                        class="logo-1"
+                        src="./assets/img/svgexport-1.svg"
+                        alt=""
+                    />
+                    <img class="logo-2" src="./assets/img/logo-2.svg" alt="" />
                 </div>
                 <div class="header__search-bar">
                     <div class="search-bar__group">
-                        <button class="search-bar__btn">Địa điểm bất kỳ</button>
-                        <button class="search-bar__btn">tuần bất kỳ</button>
+                        <button class="search-bar__btn">
+                            <p>Địa điểm bất kỳ</p>
+                        </button>
+                        <button class="search-bar__btn">
+                            <p>tuần bất kỳ</p>
+                        </button>
                         <button
                             class="search-bar__btn search-bar__btn--with-search"
                         >
-                            Thêm khách
+                            <p>Thêm khách</p>
                             <div class="search-icon">
                                 <i class="fa fa-search"></i>
                             </div>
