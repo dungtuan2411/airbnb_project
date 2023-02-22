@@ -18,6 +18,10 @@
     margin: 0 auto;
 }
 
+.d-none {
+    display: none;
+}
+
 /* HEADER */
 #header {
     font-size: 1.4rem;
@@ -380,7 +384,7 @@
 
 /* MAIN CONTAINER */
 .locations-picker {
-    margin-top: 1.6rem;
+    margin-top: 4rem !important;
     margin-bottom: 5rem;
     display: grid;
     /* grid-template-columns: repeat(4, minmax(0, 1fr)); */
@@ -420,7 +424,7 @@
 
 .like-icon {
     -webkit-text-fill-color: rgba(0, 0, 0, 0.5);
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: var(--white-color);
 }
 
@@ -612,10 +616,6 @@
     font-size: 1.4rem;
 }
 
-.footer-left {
-    display: flex;
-}
-
 .footer-left .dot-middle {
     width: 1.9rem;
     text-align: center;
@@ -623,6 +623,7 @@
 
 .footer-left__links {
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
 }
 
@@ -640,6 +641,7 @@
 /* Footer right */
 .footer-right {
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     list-style: none;
 }
@@ -749,6 +751,70 @@
     .header__container {
         grid-template-columns: min-content auto minmax(max-content, 1fr);
     }
+
+    .locations-picker {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 /* screen < 744 (tablet) */
+@media screen and (max-width: 46.4375em) {
+    .container {
+        width: calc(100% - 4.8rem);
+        margin: 0 auto;
+    }
+
+    .price-preview,
+    .header__container,.nav-filter,.prev-button-container,.next-button-container {
+        display: none;
+    }
+
+    .header__container--mobile {
+        display: block;
+        margin-top: 1.4rem;
+    }
+
+    .mobile-searchbar {
+        display: flex;
+        align-items: center;
+        padding: 1.1rem 0;
+        border: 0.5px solid rgba(0, 0, 0, 0.08);
+        border-radius: 50rem;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-search-btn {
+        padding: 0 1.6rem 0 2rem;
+        font-size: 1.6rem;
+    }
+
+    .mobile-search-body {
+        flex-grow: 1;
+    }
+
+    .mobile-search-body p {
+        color: var(--black-color);
+        font-weight: 600;
+    }
+
+    .mobile-search-body span {
+        font-size: 1.2rem;
+        color: var(--grey-color);
+    }
+
+    .mobile-search-filter {
+        margin: 0 1rem;
+        height: 3.6rem;
+        width: 3.6rem;
+        border: 1px solid var(--border-color);
+        background-color: transparent;
+        border-radius: 50%;
+    }
+
+    #navbar {
+        border-top: none;
+        border-bottom: 1px solid #ebebeb;
+        padding: 0 2.4rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
