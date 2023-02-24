@@ -11,20 +11,38 @@ window.onscroll = function () {
 const locationsPicker = document.querySelector(".locations-picker");
 
 function scrollFunction() {
-    if (
-        document.body.scrollTop > pricePreviewHeight ||
-        document.documentElement.scrollTop > pricePreviewHeight
-    ) {
-        document.getElementById("header").classList.add("header--fixed");
-        navbarId.style.paddingTop = 0;
-        navbarId.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.07)";
-        // margin top
-        locationsPicker.style.marginTop = "202px";
+    // pc or higher resolution only
+    if (window.screen.width >= 744) {
+        if (
+            document.body.scrollTop > pricePreviewHeight ||
+            document.documentElement.scrollTop > pricePreviewHeight
+        ) {
+            document.getElementById("header").classList.add("header--fixed");
+            navbarId.style.paddingTop = 0;
+            navbarId.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.07)";
+            // margin top
+            locationsPicker.style.marginTop = "170px";
+        } else {
+            document.getElementById("header").classList.remove("header--fixed");
+            navbarId.style.paddingTop = "2rem";
+            navbarId.style.boxShadow = "none";
+            locationsPicker.style.marginTop = "40px";
+        }
     } else {
-        document.getElementById("header").classList.remove("header--fixed");
-        navbarId.style.paddingTop = "2rem";
+        document.getElementById("header").classList.add("header--fixed");
+        document.getElementById("header").style.boxShadow =
+            "0 2px 4px rgba(0, 0, 0, 0.1)";
         navbarId.style.boxShadow = "none";
-        locationsPicker.style.marginTop = "24px";
+        locationsPicker.style.marginTop = "170px";
+
+        if (
+            document.body.scrollTop > 0 ||
+            document.documentElement.scrollTop > 0
+        ) {
+            // code
+        } else {
+            // code
+        }
     }
 }
 
