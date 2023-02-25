@@ -338,7 +338,7 @@
     position: relative;
 }
 
-.nav-slider__item--clicked .nav-slider-item__btn span::after {
+.nav-slider .nav-slider__item--clicked .nav-slider-item__btn span::after {
     position: absolute;
     content: "";
     height: 2px;
