@@ -1,0 +1,286 @@
+/* RESPONSIVE */
+/* width < 1880px */
+@media screen and (max-width: 117.4375em) {
+    .locations-picker {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+/* width < 1640 */
+@media screen and (max-width: 102.4375em) {
+    .locations-picker {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* width < 1440px */
+@media screen and (max-width: 89.9375em) {
+    .container {
+        width: calc(100% - 8rem);
+    }
+
+    #navbar {
+        padding: 2rem 4rem 0;
+    }
+}
+
+/* width < 1195px */
+@media screen and (max-width: 74.625em) {
+    .header__container {
+        grid-template-columns: 1fr auto max-content;
+    }
+}
+
+/* width < 1128px */
+@media screen and (max-width: 70.4375em) {
+    .header__logo .logo-1 {
+        display: none;
+    }
+
+    .header__logo .logo-2 {
+        display: block;
+    }
+
+    .locations-picker {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* width < 995 */
+@media screen and (max-width: 62.125em) {
+    .header__container {
+        grid-template-columns: 140px auto max-content;
+    }
+}
+
+/* width < 950 */
+@media screen and (max-width: 59.3125em) {
+    .header__container {
+        grid-template-columns: min-content auto minmax(max-content, 1fr);
+    }
+
+    .locations-picker {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* width < 744 (tablet) */
+@media screen and (max-width: 46.4375em) {
+    .container {
+        width: calc(100% - 4.8rem);
+        margin: 0 auto;
+    }
+
+    .price-preview,
+    .header__container,
+    .nav-filter,
+    .prev-button-container,
+    .next-button-container {
+        display: none;
+    }
+
+    .location__images-slider .slick-arrow {
+        display: none !important;
+    }
+
+    #header {
+        padding-top: 1.4rem;
+    }
+
+    .header__container--mobile {
+        display: block;
+    }
+
+    .mobile-searchbar {
+        display: flex;
+        align-items: center;
+        padding: 0.8rem 0;
+        border: 0.5px solid rgba(0, 0, 0, 0.08);
+        border-radius: 50rem;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-search-btn {
+        padding: 0 1.6rem 0 2rem;
+        font-size: 1.6rem;
+    }
+
+    .mobile-search-body {
+        flex-grow: 1;
+    }
+
+    .mobile-search-body p {
+        color: var(--black-color);
+        font-weight: 600;
+    }
+
+    .mobile-search-body span {
+        font-size: 1.2rem;
+        color: var(--grey-color);
+    }
+
+    .mobile-search-filter {
+        margin: 0 1rem;
+        height: 3.6rem;
+        width: 3.6rem;
+        border: 1px solid var(--border-color);
+        background-color: transparent;
+        border-radius: 50%;
+    }
+
+    .mobile-search-filter img {
+        vertical-align: top;
+    }
+
+    #navbar {
+        border-top: none;
+        border-bottom: 1px solid #ebebeb;
+        padding: 0 2.4rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-slider-item__btn {
+        gap: 7px;
+    }
+
+    .locations-picker {
+        margin-top: 2.4rem;
+    }
+
+    #footer {
+        padding: 0;
+        border-top: none;
+        bottom: -1px;
+    }
+
+    .footer__container {
+        display: none;
+    }
+
+    .price-preview--mobile,
+    .footer-tabs-mobile {
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    .price-preview--mobile {
+        display: flex;
+        height: 4.8rem;
+        box-shadow: 0 -11px 8px rgba(0, 0, 0, 0.06);
+        bottom: 6.3rem;
+    }
+
+    .footer-tabs-mobile {
+        bottom: -1px;
+        background-color: var(--white-color);
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+        border-top: 1px solid #ebebeb;
+        animation: fade-in 500ms forwards;
+    }
+
+    .footer-tabs-mobile > * {
+        text-align: center;
+        color: var(--grey-color);
+        flex: 1 0 auto;
+        max-width: 20%;
+        font-weight: 700;
+    }
+
+    .footer-tabs-mobile > * span {
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+
+    .footer-tabs-mobile > .active span i {
+        -webkit-text-fill-color: var(--white-color);
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: var(--red-color);
+    }
+
+    .footer-tabs-mobile > *:not(.active) span i {
+        -webkit-text-fill-color: white;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: rgb(176 176 176);
+    }
+
+    .footer-tabs-mobile .tabs-mobile__explore span i {
+        -webkit-text-fill-color: rgb(176 176 176);
+        -webkit-text-stroke-width: 0px;
+        -webkit-text-stroke-color: rgb(176 176 176);
+    }
+
+    .footer-tabs-mobile .tabs-mobile__explore.active span i {
+        -webkit-text-fill-color: var(--red-color);
+        -webkit-text-stroke-width: 0px;
+        -webkit-text-stroke-color: var(--red-color);
+    }
+
+    .footer-tabs-mobile > .active p {
+        color: var(--black-color);
+    }
+
+    .footer-tabs-mobile > * > p {
+        font-size: 1rem;
+    }
+
+    .mobile__explore-icon,
+    .mobile__liked-icon,
+    .mobile__login-icon {
+        font-size: 2.4rem;
+    }
+
+    .show-map {
+        display: none;
+    }
+
+    .show-map--mobile {
+        display: flex;
+        align-items: center;
+        bottom: calc(2.4rem + 6.4rem);
+        z-index: 3;
+        animation: fade-out 500ms forwards;
+        transition: all 0.5s;
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+            translate: 0% 100%;
+        }
+        100% {
+            opacity: 1;
+            translate: 0% 0%;
+        }
+    }
+
+    @keyframes fade-out {
+        0% {
+            opacity: 1;
+            translate: 0% 0%;
+            pointer-events: all;
+        }
+        100% {
+            opacity: 0;
+            translate: 0% 100%;
+            pointer-events: none;
+        }
+    }
+}
+
+/* width < 550px*/
+@media screen and (max-width: 34.3125em) {
+    .locations-picker {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+/* width < 375px */
+@media screen and (max-width: 23.375em) {
+    .price-preview--mobile {
+        font-size: 1.4rem;
+    }
+}

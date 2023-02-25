@@ -2,6 +2,7 @@
 const pricePreviewHeight =
     document.querySelector(".price-preview").offsetHeight;
 const navbarId = document.getElementById("navbar");
+const headerHeight = document.getElementById("header").offsetHeight;
 
 window.onscroll = function () {
     scrollFunction();
@@ -36,12 +37,35 @@ function scrollFunction() {
         locationsPicker.style.marginTop = "170px";
 
         if (
-            document.body.scrollTop > 0 ||
-            document.documentElement.scrollTop > 0
+            (document.body.scrollTop > 0 &&
+                document.body.scrollTop < headerHeight) ||
+            (document.documentElement.scrollTop > 0 &&
+                document.documentElement.scrollTop < headerHeight)
         ) {
-            // code
+            document.querySelector(".show-map--mobile").style.animation =
+                "fade-in 500ms forwards";
+            document.querySelector(".price-preview--mobile").style.animation =
+                "fade-out 500ms forwards";
+            document.querySelector(".footer-tabs-mobile").style.animation =
+                "fade-in 500ms forwards";
+            document.querySelector(".show-map--mobile").style.bottom =
+                "calc(2.4rem + 6.4rem)";
+        } else if (
+            document.body.scrollTop >= headerHeight ||
+            document.documentElement.scrollTop >= headerHeight
+        ) {
+            document.querySelector(".footer-tabs-mobile").style.animation =
+                "fade-out 500ms forwards";
+            document.querySelector(".show-map--mobile").style.bottom = "2.4rem";
         } else {
-            // code
+            document.querySelector(".show-map--mobile").style.animationName =
+                "fade-out";
+            document.querySelector(".price-preview--mobile").style.animation =
+                "fade-in 500ms forwards";
+            document.querySelector(".footer-tabs-mobile").style.animation =
+                "fade-in 500ms forwards";
+            document.querySelector(".show-map--mobile").style.bottom =
+                "calc(2.4rem + 6.4rem)";
         }
     }
 }
@@ -85,16 +109,35 @@ buttons.forEach((item) => {
     });
 });
 
-// Slider item clicked
+// Slider item and footer tabs item clicked
 const sliderItems = document.querySelectorAll(".nav-slider__item");
-sliderItems.forEach((item, index) => {
-    item.onclick = function () {
+const footerTabItems = document.querySelectorAll(".footer-tabs-mobile > *");
+
+function clickItemsEvent(type) {
+    if (type === 1) {
         // find current clicked item and remove it's --clicked class.
-        document
-            .querySelector(".nav-slider__item.nav-slider__item--clicked")
+        this.parentElement
+            .querySelector(`.nav-slider__item--clicked`)
             .classList.remove("nav-slider__item--clicked");
         // add --clicked class to newest clicked item.
         this.classList.add("nav-slider__item--clicked");
+    } else {
+        // find current clicked item and remove it's --clicked class.
+        this.parentElement.querySelector(`.active`).classList.remove("active");
+        // add --clicked class to newest clicked item.
+        this.classList.add("active");
+    }
+}
+
+sliderItems.forEach((item, index) => {
+    item.onclick = function () {
+        clickItemsEvent.call(item, 1);
+    };
+});
+
+footerTabItems.forEach((item) => {
+    item.onclick = function () {
+        clickItemsEvent.call(item, 2);
     };
 });
 
